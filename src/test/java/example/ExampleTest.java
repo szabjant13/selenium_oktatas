@@ -1,5 +1,7 @@
 package example;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,9 +22,14 @@ public class ExampleTest {
 
 
     @Test
-    public void openGoogleTest(){
-        driver.get("https://google.com");
-        System.out.println("Title: " + driver.getTitle());
+    public void openGoogleTest() throws InterruptedException {
+        driver.get("https://www.saucedemo.com/");
+        WebElement userInput = driver.findElement(By.xpath("//input[@id='user-name']"));
+        WebElement passwordInput = driver.findElement(By.xpath("//input[@id='password']"));
+        WebElement loginButton = driver.findElement(By.xpath("//input[@id='login-button']"));
+        userInput.sendKeys("standard_user");
+        passwordInput.sendKeys("secret_sauce");
+        loginButton.click();
     }
 
     @AfterClass
